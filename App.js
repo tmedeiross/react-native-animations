@@ -7,9 +7,8 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    Animated.timing(this.state.ballY, {
-      toValue: 500,
-      duration: 1000
+    Animated.decay(this.state.ballY, {
+      velocity: 0.5
     }).start();
   }
 
