@@ -1,19 +1,24 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Animated } from "react-native";
 
-const ballY = new Animated.Value(0);
-const ballX = Animated.divide(ballY, 4);
-
 export default class App extends Component {
   state = {
-    ballY: ballY,
-    ballX: ballX
+    ballY: new Animated.Value(0),
+    ballX: new Animated.Value(0)
   };
 
   componentDidMount() {
-    Animated.decay(this.state.ballY, {
-      velocity: 1
-    }).start();
+    Animated.stagger(200, [
+      Animated.timing(this.state.ballY, {
+        toValue: 400,
+        duration: 500
+      }),
+
+      Animated.timing(this.state.ballX, {
+        toValue: 150,
+        duration: 500
+      })
+    ]).start();
   }
 
   render() {
